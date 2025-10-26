@@ -30,6 +30,7 @@ export default async function BlogsPage({ searchParams }) {
       const decoded = jwt.verify(token, JWT_SECRET);
       user = decoded;
       
+      // Only redirect vendors to dashboard, allow customers
       if (decoded.role === 'vendor') {
         redirect('/vendor/dashboard');
       }

@@ -42,7 +42,7 @@ export default function Navbar() {
     }
   };
 
-  // Don't show navbar for vendors on customer pages
+  // Don't show navbar for vendors of customer pages
   if (user?.role === 'vendor') {
     return null;
   }

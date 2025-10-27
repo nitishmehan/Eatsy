@@ -13,8 +13,18 @@ export async function POST(request) {
     await dbConnect();
     const { vendorId, items, total, deliveryAddress } = await request.json();
 
+    console.log('Order data:', { vendorId, items, total, deliveryAddress }); // Debug log
+
     if (!vendorId || !items || items.length === 0 || !total || !deliveryAddress) {
-      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+      return NextResponse.json({ 
+        error: 'Missing required fields',
+        details: {
+          vendorId: !!vendorId,
+          items: items?.length > 0,
+          total: !!total,
+          deliveryAddress: !!deliveryAddress
+        }
+      }, { status: 400 });
     }
 
     // Create order

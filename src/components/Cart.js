@@ -101,18 +101,17 @@ export default function Cart({ restaurantId }) {
         </div>
 
         <button
-          onClick={handleCheckout}
+          onClick={() => setShowCheckout(true)}
           className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white py-3 rounded-lg hover:from-orange-600 hover:to-orange-700 transition font-semibold"
         >
-          Proceed to Checkout
+          Checkout
         </button>
       </div>
 
       {showCheckout && (
         <CheckoutModal
           cart={cart}
-          total={total + DELIVERY_FEE}
-          restaurantId={restaurantId}
+          vendorId={restaurantId}
           onClose={() => setShowCheckout(false)}
         />
       )}
